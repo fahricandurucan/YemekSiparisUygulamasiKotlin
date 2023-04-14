@@ -22,6 +22,9 @@
         <action
             android:id="@+id/yemekSepetGecis"
             app:destination="@id/sepetSayfasiFragment" />
+        <argument
+            android:name="yemek"
+            app:argType="com.example.yemeksiparisuygulamasikotlin.data.entity.Yemekler" />
     </fragment>
     <fragment
         android:id="@+id/sepetSayfasiFragment"
