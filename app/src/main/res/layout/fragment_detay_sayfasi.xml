@@ -27,32 +27,33 @@
             android:id="@+id/ivYemekResim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="33dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarDetay"
+            app:layout_constraintTop_toBottomOf="@+id/tvYemekFiyat"
             app:srcCompat="@drawable/download" />
 
         <TextView
             android:id="@+id/tvYemekAdi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="50dp"
             android:text="TextView"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivYemekResim" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDetay" />
 
         <TextView
             android:id="@+id/tvYemekFiyat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:text="TextView"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvYemekAdi" />
 
@@ -60,23 +61,42 @@
             android:id="@+id/buttonSepetEkle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="65dp"
+            android:layout_marginBottom="28dp"
             android:text="Sepete ekle"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvYemekFiyat" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/buttonSepeteGit"
+        <ImageView
+            android:id="@+id/imageViewNegative"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Sepete git"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonSepetEkle" />
+            app:layout_constraintTop_toBottomOf="@+id/ivYemekResim"
+            app:srcCompat="@drawable/negative" />
+
+        <ImageView
+            android:id="@+id/imageViewPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivYemekResim"
+            app:srcCompat="@drawable/plus" />
+
+        <TextView
+            android:id="@+id/textViewAdet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="1"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewPlus"
+            app:layout_constraintStart_toEndOf="@+id/imageViewNegative"
+            app:layout_constraintTop_toBottomOf="@+id/ivYemekResim" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
