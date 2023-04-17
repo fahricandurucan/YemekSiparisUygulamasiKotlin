@@ -30,5 +30,9 @@
         android:id="@+id/sepetSayfasiFragment"
         android:name="com.example.yemeksiparisuygulamasikotlin.ui.fragment.SepetSayfasiFragment"
         android:label="fragment_sepet_sayfasi"
-        tools:layout="@layout/fragment_sepet_sayfasi" />
+        tools:layout="@layout/fragment_sepet_sayfasi" >
+        <argument
+            android:name="sepetYemek"
+            app:argType="com.example.yemeksiparisuygulamasikotlin.data.entity.SepetYemekler" />
+    </fragment>
 </navigation>
