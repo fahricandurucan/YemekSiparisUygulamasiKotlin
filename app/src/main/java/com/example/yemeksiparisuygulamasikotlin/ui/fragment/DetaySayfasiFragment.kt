@@ -25,13 +25,34 @@ class DetaySayfasiFragment : Fragment() {
         binding.ivYemekResim.setImageResource(resources.getIdentifier(gelenYemek.yemek_resim_adi,"drawable",requireContext().packageName))
         binding.tvYemekAdi.text = gelenYemek.yemek_adi
         binding.tvYemekFiyat.text = gelenYemek.yemek_fiyat.toString()
+        binding.textViewAdet.text = "1"
 
         binding.buttonSepetEkle.setOnClickListener {
             Snackbar.make(it,"${gelenYemek.yemek_adi} sepete eklendi",Snackbar.LENGTH_LONG).show()
         }
 
+        binding.imageViewNegative.setOnClickListener {
+            var x : String = binding.textViewAdet.text.toString()
+            var y = x.toInt()
+            if(y != 0){
+                y = y - 1
+            }
+            binding.textViewAdet.text = y.toString()
+        }
+
+        binding.imageViewPlus.setOnClickListener {
+            var x : String = binding.textViewAdet.text.toString()
+            var y = x.toInt()
+            y = y + 1
+            binding.textViewAdet.text = y.toString()
+        }
+
 
         return binding.root
+    }
+
+    fun azalt(adet:Int){
+
     }
 
 }
