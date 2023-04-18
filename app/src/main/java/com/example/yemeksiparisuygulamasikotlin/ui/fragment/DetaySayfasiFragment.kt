@@ -26,7 +26,7 @@ class DetaySayfasiFragment : Fragment() {
 
 
 
-        val kullanici_adi = "qwdqwd"
+        val kullanici_adi = "fahrican_durucan"
         binding.toolbarDetay.title = "asdasd"
 
         val bundle:DetaySayfasiFragmentArgs by navArgs()

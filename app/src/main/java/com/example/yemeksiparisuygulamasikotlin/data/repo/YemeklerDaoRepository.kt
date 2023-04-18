@@ -2,9 +2,7 @@ package com.example.yemeksiparisuygulamasikotlin.data.repo
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.yemeksiparisuygulamasikotlin.data.entity.SepetYemekler
-import com.example.yemeksiparisuygulamasikotlin.data.entity.Yemekler
-import com.example.yemeksiparisuygulamasikotlin.data.entity.YemeklerCevap
+import com.example.yemeksiparisuygulamasikotlin.data.entity.*
 import com.example.yemeksiparisuygulamasikotlin.retrofit.ApiUtils
 import com.example.yemeksiparisuygulamasikotlin.retrofit.YemeklerDao
 import retrofit2.Call
@@ -28,7 +26,11 @@ class YemeklerDaoRepository {
     }
 
     fun sepeteEkle(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,yemek_siparis_adet:Int,kullanici_adi:String){
-        Log.e("Sepete Ekle", "$yemek_adi - $yemek_fiyat - $yemek_siparis_adet")
+        ydao.sepeteYemekEkle(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+            .enqueue(object : Callback<CRUDCevap>{
+                override fun onResponse(call: Call<CRUDCevap>, response: Response<CRUDCevap>) {}
+                override fun onFailure(call: Call<CRUDCevap>, t: Throwable) {}
+            })
     }
     fun yemeklerYukle(){
         ydao.tumYemekler().enqueue(object : Callback<YemeklerCevap>{
@@ -59,22 +61,31 @@ class YemeklerDaoRepository {
         return  yemekListesi
     }
 
-    fun sepetYemekYukle(){
-        val liste = ArrayList<SepetYemekler>()
-        val s1 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s2 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s3 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s4 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s5 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s6 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+    fun sepetYemekYukle(kullanici_adi: String){
+        ydao.sepetYemekGetir(kullanici_adi).enqueue(object : Callback<SepetYemeklerCevap>{
+            override fun onResponse(call: Call<SepetYemeklerCevap>, response: Response<SepetYemeklerCevap>) {
+                val liste = response.body()!!.sepet_yemekler
+                sepetYemekListesi.value = liste
+            }
 
-        liste.add(s1)
-        liste.add(s2)
-        liste.add(s3)
-        liste.add(s4)
-        liste.add(s5)
-        liste.add(s6)
-        sepetYemekListesi.value = liste
+            override fun onFailure(call: Call<SepetYemeklerCevap>, t: Throwable) {}
+
+        })
+//        val liste = ArrayList<SepetYemekler>()
+//        val s1 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+//        val s2 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+//        val s3 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+//        val s4 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+//        val s5 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+//        val s6 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+//
+//        liste.add(s1)
+//        liste.add(s2)
+//        liste.add(s3)
+//        liste.add(s4)
+//        liste.add(s5)
+//        liste.add(s6)
+//        sepetYemekListesi.value = liste
     }
 
     fun sepetYemekGetir() : MutableLiveData<List<SepetYemekler>>{

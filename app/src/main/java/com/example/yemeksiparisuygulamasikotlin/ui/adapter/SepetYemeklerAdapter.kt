@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.yemeksiparisuygulamasikotlin.R
 import com.example.yemeksiparisuygulamasikotlin.data.entity.SepetYemekler
 import com.example.yemeksiparisuygulamasikotlin.databinding.SepetYemekCardTasarimBinding
@@ -30,7 +31,11 @@ class SepetYemeklerAdapter(var mContext:Context,var sepetYemekListesi:List<Sepet
     override fun onBindViewHolder(holder: SepetYemekCardTasarimTutucu, position: Int) {
         val sepetYemek = sepetYemekListesi.get(position)
         val t = holder.binding
-        t.imageViewSepet.setImageResource(mContext.resources.getIdentifier(sepetYemek.yemek_resim_adi,"drawable",mContext.packageName))
+
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${sepetYemek.yemek_resim_adi}"
+        Glide.with(mContext).load(url).into(t.imageViewSepet)
+
+//        t.imageViewSepet.setImageResource(mContext.resources.getIdentifier(sepetYemek.yemek_resim_adi,"drawable",mContext.packageName))
         t.tvSepetYemekAd.text = sepetYemek.yemek_adi
         t.tvSepetYemekFiyat.text = sepetYemek.yemek_fiyat.toString()
         t.tvSepetAdet.text = sepetYemek.yemek_siparis_adet.toString()

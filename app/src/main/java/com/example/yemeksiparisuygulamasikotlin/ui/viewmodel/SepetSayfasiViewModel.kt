@@ -11,12 +11,12 @@ class SepetSayfasiViewModel : ViewModel() {
     var sepetYemekListesi : MutableLiveData<List<SepetYemekler>>
 
     init {
-        sepetYemekYukle()
+        sepetYemekYukle(kullanici_adi = "fahrican_durucan")
         sepetYemekListesi = repo.sepetYemekGetir()
     }
 
-    fun sepetYemekYukle(){
-        repo.sepetYemekYukle()
+    fun sepetYemekYukle(kullanici_adi:String){
+        repo.sepetYemekYukle(kullanici_adi)
     }
 
 }
