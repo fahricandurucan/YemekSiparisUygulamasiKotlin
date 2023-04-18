@@ -7,27 +7,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.yemeksiparisuygulamasikotlin.R
 import com.example.yemeksiparisuygulamasikotlin.data.entity.SepetYemekler
 import com.example.yemeksiparisuygulamasikotlin.databinding.FragmentDetaySayfasiBinding
+import com.example.yemeksiparisuygulamasikotlin.ui.viewmodel.DetaySayfasiViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlin.math.sign
 
 class DetaySayfasiFragment : Fragment() {
     private lateinit var binding: FragmentDetaySayfasiBinding
-    val kullanici_adi = "qwdqwd"
+    private lateinit var viewModel:DetaySayfasiViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_detay_sayfasi, container, false)
 
-//        binding.detaySayfasiFragment = this
-//        binding.detaySayfasiToolbarBaslik = "Yemek Detay"
 
+
+        val kullanici_adi = "qwdqwd"
+        binding.toolbarDetay.title = "asdasd"
 
         val bundle:DetaySayfasiFragmentArgs by navArgs()
         val gelenYemek = bundle.yemek
 
-//        binding.yemekNesnesi = gelenYemek
 
         binding.toolbarDetay.title = "Yemek Adı"
         binding.ivYemekResim.setImageResource(resources.getIdentifier(gelenYemek.yemek_resim_adi,"drawable",requireContext().packageName))
@@ -37,6 +40,8 @@ class DetaySayfasiFragment : Fragment() {
 
 
         binding.buttonSepetEkle.setOnClickListener {
+            val siparisAdet = binding.textViewAdet.text.toString().toInt()
+            sepeteEkle(gelenYemek.yemek_adi,gelenYemek.yemek_resim_adi,gelenYemek.yemek_fiyat,siparisAdet, kullanici_adi)
 
         }
 
@@ -45,29 +50,44 @@ class DetaySayfasiFragment : Fragment() {
         }
 
         binding.imageViewNegative.setOnClickListener {
-            var x : String = binding.textViewAdet.text.toString()
-            var y = x.toInt()
-            if(y != 0){
-                y = y - 1
-            }
-            binding.textViewAdet.text = y.toString()
+            azalt()
         }
 
         binding.imageViewPlus.setOnClickListener {
-            var x : String = binding.textViewAdet.text.toString()
-            var y = x.toInt()
-            y = y + 1
-            binding.textViewAdet.text = y.toString()
+            arttir()
         }
 
 
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel : DetaySayfasiViewModel by viewModels()
+        viewModel = tempViewModel
+    }
+
 
     fun sepeteEkle(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,yemek_siparis_adet:Int,kullanici_adi:String){
-        Log.e("Sepete Ekle", "$yemek_adi - $yemek_fiyat - $yemek_siparis_adet")
+        viewModel.sepeteEkle(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
     }
+
+    fun azalt(){
+        var x : String = binding.textViewAdet.text.toString()
+        var y = x.toInt()
+        if(y != 0){
+            y = y - 1
+        }
+        binding.textViewAdet.text = y.toString()
+    }
+
+    fun arttir(){
+        var x : String = binding.textViewAdet.text.toString()
+        var y = x.toInt()
+        y = y + 1
+        binding.textViewAdet.text = y.toString()
+    }
+
 
 
 

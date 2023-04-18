@@ -5,16 +5,6 @@
 
     <data>
 
-<!--        <variable-->
-<!--            name="detaySayfasiToolbarBaslik"-->
-<!--            type="String" />-->
-<!--        <variable-->
-<!--            name="detaySayfasiFragment"-->
-<!--            type="com.example.yemeksiparisuygulamasikotlin.ui.fragment.DetaySayfasiFragment" />-->
-<!--        <variable-->
-<!--            name="yemekNesnesi"-->
-<!--            type="com.example.yemeksiparisuygulamasikotlin.data.entity.Yemekler" />-->
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

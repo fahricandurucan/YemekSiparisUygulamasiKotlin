@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.yemeksiparisuygulamasikotlin.R
 import com.example.yemeksiparisuygulamasikotlin.data.entity.Yemekler
 import com.example.yemeksiparisuygulamasikotlin.databinding.FragmentAnasayfaBinding
 import com.example.yemeksiparisuygulamasikotlin.ui.adapter.YemeklerAdapter
+import com.example.yemeksiparisuygulamasikotlin.ui.viewmodel.AnasayfaViewModel
 
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
+    private lateinit var viewModel : AnasayfaViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_anasayfa, container, false)
 
@@ -22,25 +25,22 @@ class AnasayfaFragment : Fragment() {
 
         binding.rv.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
 
-        val yemeklerListesi = ArrayList<Yemekler>()
-        val y1 = Yemekler(1,"Ayran","download",12)
-        val y2 = Yemekler(1,"Ayran","download",12)
-        val y3 = Yemekler(1,"Ayran","download",12)
-        val y4 = Yemekler(1,"Ayran","download",12)
-        val y5 = Yemekler(1,"Ayran","download",12)
-        val y6 = Yemekler(1,"Ayran","download",12)
+        //dinleme işlemi
+        viewModel.yemekListesi.observe(viewLifecycleOwner){
+            val adapter = YemeklerAdapter(requireContext(),it,viewModel)
+            binding.rv.adapter = adapter
+        }
 
-        yemeklerListesi.add(y1)
-        yemeklerListesi.add(y2)
-        yemeklerListesi.add(y3)
-        yemeklerListesi.add(y4)
-        yemeklerListesi.add(y5)
-        yemeklerListesi.add(y6)
 
-        val adapter = YemeklerAdapter(requireContext(),yemeklerListesi)
-        binding.rv.adapter = adapter
 
 
         return binding.root
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel : AnasayfaViewModel by viewModels()
+        viewModel = tempViewModel
+    }
+
 }

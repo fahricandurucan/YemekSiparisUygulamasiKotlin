@@ -10,9 +10,10 @@ import com.example.yemeksiparisuygulamasikotlin.R
 import com.example.yemeksiparisuygulamasikotlin.data.entity.Yemekler
 import com.example.yemeksiparisuygulamasikotlin.databinding.YemekCardTasarimBinding
 import com.example.yemeksiparisuygulamasikotlin.ui.fragment.AnasayfaFragmentDirections
+import com.example.yemeksiparisuygulamasikotlin.ui.viewmodel.AnasayfaViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class YemeklerAdapter(var mContext:Context,var yemekListesi:List<Yemekler>)
+class YemeklerAdapter(var mContext:Context,var yemekListesi:List<Yemekler>,viewModel:AnasayfaViewModel)
     : RecyclerView.Adapter<YemeklerAdapter.YemekCardTasarimTutucu>() {
 
     inner class YemekCardTasarimTutucu(var binding:YemekCardTasarimBinding) : RecyclerView.ViewHolder(binding.root){
