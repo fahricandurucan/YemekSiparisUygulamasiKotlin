@@ -27,7 +27,7 @@ class SepetSayfasiFragment : Fragment() {
             binding.rvSepet.adapter = adapter
         }
 
-        
+
 
 
         return binding.root

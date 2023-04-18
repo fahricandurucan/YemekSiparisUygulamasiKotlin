@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.yemeksiparisuygulamasikotlin.R
 import com.example.yemeksiparisuygulamasikotlin.data.entity.SepetYemekler
 import com.example.yemeksiparisuygulamasikotlin.databinding.FragmentDetaySayfasiBinding
@@ -33,7 +34,9 @@ class DetaySayfasiFragment : Fragment() {
 
 
         binding.toolbarDetay.title = "Yemek Adı"
-        binding.ivYemekResim.setImageResource(resources.getIdentifier(gelenYemek.yemek_resim_adi,"drawable",requireContext().packageName))
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${gelenYemek.yemek_resim_adi}"
+        Glide.with(this).load(url).override(300,300).into(binding.ivYemekResim)
+        //binding.ivYemekResim.setImageResource(resources.getIdentifier(gelenYemek.yemek_resim_adi,"drawable",requireContext().packageName))
         binding.tvYemekAdi.text = gelenYemek.yemek_adi
         binding.tvYemekFiyat.text = gelenYemek.yemek_fiyat.toString()
         binding.textViewAdet.text = "1"
@@ -87,6 +90,9 @@ class DetaySayfasiFragment : Fragment() {
         y = y + 1
         binding.textViewAdet.text = y.toString()
     }
+
+
+
 
 
 

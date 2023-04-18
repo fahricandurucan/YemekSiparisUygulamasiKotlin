@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.yemeksiparisuygulamasikotlin.R
 import com.example.yemeksiparisuygulamasikotlin.data.entity.Yemekler
 import com.example.yemeksiparisuygulamasikotlin.databinding.YemekCardTasarimBinding
@@ -34,8 +35,11 @@ class YemeklerAdapter(var mContext:Context,var yemekListesi:List<Yemekler>,viewM
         val yemek = yemekListesi.get(position)
         val t = holder.binding
         t.textViewYemek.text = yemek.yemek_adi
-        t.imageViewYemek.setImageResource(mContext.resources.getIdentifier(yemek.yemek_resim_adi,"drawable",mContext.packageName))
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"
+        Glide.with(mContext).load(url).override(300,300).into(t.imageViewYemek)
+//        t.imageViewYemek.setImageResource(mContext.resources.getIdentifier(yemek.yemek_resim_adi,"drawable",mContext.packageName))
         t.textViewFiyat.text = yemek.yemek_fiyat.toString()
+
         t.buttonDetay.setOnClickListener {
             Snackbar.make(it,"${yemek.yemek_adi} sepete eklendi",Snackbar.LENGTH_LONG).show()
         }
