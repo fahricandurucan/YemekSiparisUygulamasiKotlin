@@ -2,11 +2,17 @@ package com.example.yemeksiparisuygulamasikotlin.data.repo
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.yemeksiparisuygulamasikotlin.data.entity.SepetYemekler
 import com.example.yemeksiparisuygulamasikotlin.data.entity.Yemekler
 
 class YemeklerDaoRepository {
 
     var yemekListesi : MutableLiveData<List<Yemekler>>
+    var sepetYemekListesi : MutableLiveData<List<SepetYemekler>>
+
+    init {
+        sepetYemekListesi = MutableLiveData()
+    }
 
     init {
         yemekListesi = MutableLiveData()
@@ -34,5 +40,27 @@ class YemeklerDaoRepository {
     }
     fun yemeklerGetir() : MutableLiveData<List<Yemekler>>{
         return  yemekListesi
+    }
+
+    fun sepetYemekYukle(){
+        val liste = ArrayList<SepetYemekler>()
+        val s1 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+        val s2 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+        val s3 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+        val s4 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+        val s5 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+        val s6 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+
+        liste.add(s1)
+        liste.add(s2)
+        liste.add(s3)
+        liste.add(s4)
+        liste.add(s5)
+        liste.add(s6)
+        sepetYemekListesi.value = liste
+    }
+
+    fun sepetYemekGetir() : MutableLiveData<List<SepetYemekler>>{
+        return sepetYemekListesi
     }
 }

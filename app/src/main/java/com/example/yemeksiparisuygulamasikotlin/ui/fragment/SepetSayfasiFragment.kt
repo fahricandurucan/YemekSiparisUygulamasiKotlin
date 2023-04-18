@@ -22,23 +22,12 @@ class SepetSayfasiFragment : Fragment() {
 
         binding.rvSepet.layoutManager = LinearLayoutManager(requireContext())
 
-        val sepetYemekListesi = ArrayList<SepetYemekler>()
-        val s1 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s2 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s3 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s4 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s5 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
-        val s6 = SepetYemekler(1,"Ayran","download",10,2,"qwdqw")
+        viewModel.sepetYemekListesi.observe(viewLifecycleOwner){
+            val adapter = SepetYemeklerAdapter(requireContext(),it)
+            binding.rvSepet.adapter = adapter
+        }
 
-        sepetYemekListesi.add(s1)
-        sepetYemekListesi.add(s2)
-        sepetYemekListesi.add(s3)
-        sepetYemekListesi.add(s4)
-        sepetYemekListesi.add(s5)
-        sepetYemekListesi.add(s6)
-
-        val adapter = SepetYemeklerAdapter(requireContext(),sepetYemekListesi)
-        binding.rvSepet.adapter = adapter
+        
 
 
         return binding.root
