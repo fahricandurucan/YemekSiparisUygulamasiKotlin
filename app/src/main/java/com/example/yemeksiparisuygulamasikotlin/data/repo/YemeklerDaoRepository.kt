@@ -62,13 +62,18 @@ class YemeklerDaoRepository {
     }
 
     fun sepetYemekYukle(kullanici_adi: String){
+        Log.e("xxx","yyy")
         ydao.sepetYemekGetir(kullanici_adi).enqueue(object : Callback<SepetYemeklerCevap>{
             override fun onResponse(call: Call<SepetYemeklerCevap>, response: Response<SepetYemeklerCevap>) {
                 val liste = response.body()!!.sepet_yemekler
                 sepetYemekListesi.value = liste
             }
 
-            override fun onFailure(call: Call<SepetYemeklerCevap>, t: Throwable) {}
+            override fun onFailure(call: Call<SepetYemeklerCevap>, t: Throwable) {
+                //silme kısmında son elemanı silerken sayfa değişikliği yapınca görebiliyordum silindigini
+                //bu kod o sorunu çözdü
+                sepetYemekListesi.value = ArrayList<SepetYemekler>()
+            }
 
         })
 //        val liste = ArrayList<SepetYemekler>()
@@ -93,6 +98,9 @@ class YemeklerDaoRepository {
     }
 
     fun sepetYemekSil(sepet_yemek_id:Int,kullanici_adi: String){
+        if (sepetYemekListesi.value?.size == 1){
+
+        }
         ydao.sepetYemekSil(sepet_yemek_id,kullanici_adi).enqueue(object : Callback<CRUDCevap>{
             override fun onResponse(call: Call<CRUDCevap>, response: Response<CRUDCevap>) {
                 sepetYemekYukle(kullanici_adi) //anlık olarak arayüzde sildikten sonra değişiklik yapması için yazdık
