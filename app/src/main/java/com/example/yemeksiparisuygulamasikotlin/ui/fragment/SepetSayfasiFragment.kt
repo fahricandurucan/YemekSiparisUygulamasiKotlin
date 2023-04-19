@@ -23,10 +23,9 @@ class SepetSayfasiFragment : Fragment() {
         binding.rvSepet.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.sepetYemekListesi.observe(viewLifecycleOwner){
-            val adapter = SepetYemeklerAdapter(requireContext(),it)
+            val adapter = SepetYemeklerAdapter(requireContext(),it,viewModel)
             binding.rvSepet.adapter = adapter
         }
-
 
 
 
@@ -37,6 +36,16 @@ class SepetSayfasiFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val tempViewModel:SepetSayfasiViewModel by viewModels()
         viewModel = tempViewModel
+    }
+
+    fun sepetYemekSil(sepet_yemek_id:Int,kullanici_adi:String){
+        viewModel.sepetYemekSil(sepet_yemek_id,kullanici_adi)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.sepetYemekYukle("fahrican_durucan")
+
     }
 
 }

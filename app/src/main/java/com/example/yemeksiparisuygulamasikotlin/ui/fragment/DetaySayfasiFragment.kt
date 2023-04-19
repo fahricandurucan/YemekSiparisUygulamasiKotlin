@@ -43,6 +43,7 @@ class DetaySayfasiFragment : Fragment() {
 
 
         binding.buttonSepetEkle.setOnClickListener {
+            Log.e("Sepete ekle", "${gelenYemek.yemek_adi} - $kullanici_adi")
             val siparisAdet = binding.textViewAdet.text.toString().toInt()
             sepeteEkle(gelenYemek.yemek_adi,gelenYemek.yemek_resim_adi,gelenYemek.yemek_fiyat,siparisAdet, kullanici_adi)
 

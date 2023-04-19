@@ -18,5 +18,8 @@ class SepetSayfasiViewModel : ViewModel() {
     fun sepetYemekYukle(kullanici_adi:String){
         repo.sepetYemekYukle(kullanici_adi)
     }
+    fun sepetYemekSil(sepet_yemek_id:Int,kullanici_adi:String){
+        repo.sepetYemekSil(sepet_yemek_id,kullanici_adi)
+    }
 
 }

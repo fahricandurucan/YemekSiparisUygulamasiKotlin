@@ -91,4 +91,15 @@ class YemeklerDaoRepository {
     fun sepetYemekGetir() : MutableLiveData<List<SepetYemekler>>{
         return sepetYemekListesi
     }
+
+    fun sepetYemekSil(sepet_yemek_id:Int,kullanici_adi: String){
+        ydao.sepetYemekSil(sepet_yemek_id,kullanici_adi).enqueue(object : Callback<CRUDCevap>{
+            override fun onResponse(call: Call<CRUDCevap>, response: Response<CRUDCevap>) {
+                sepetYemekYukle(kullanici_adi) //anlık olarak arayüzde sildikten sonra değişiklik yapması için yazdık
+            }
+
+            override fun onFailure(call: Call<CRUDCevap>, t: Throwable) {}
+        })
+
+    }
 }

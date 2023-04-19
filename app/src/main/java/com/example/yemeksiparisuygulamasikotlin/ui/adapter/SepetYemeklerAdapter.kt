@@ -9,8 +9,9 @@ import com.bumptech.glide.Glide
 import com.example.yemeksiparisuygulamasikotlin.R
 import com.example.yemeksiparisuygulamasikotlin.data.entity.SepetYemekler
 import com.example.yemeksiparisuygulamasikotlin.databinding.SepetYemekCardTasarimBinding
+import com.example.yemeksiparisuygulamasikotlin.ui.viewmodel.SepetSayfasiViewModel
 
-class SepetYemeklerAdapter(var mContext:Context,var sepetYemekListesi:List<SepetYemekler>)
+class SepetYemeklerAdapter(var mContext:Context,var sepetYemekListesi:List<SepetYemekler>,var viewModel: SepetSayfasiViewModel)
     : RecyclerView.Adapter<SepetYemeklerAdapter.SepetYemekCardTasarimTutucu>(){
 
 
@@ -39,7 +40,13 @@ class SepetYemeklerAdapter(var mContext:Context,var sepetYemekListesi:List<Sepet
         t.tvSepetYemekAd.text = sepetYemek.yemek_adi
         t.tvSepetYemekFiyat.text = sepetYemek.yemek_fiyat.toString()
         t.tvSepetAdet.text = sepetYemek.yemek_siparis_adet.toString()
+
+        t.imageViewDelete.setOnClickListener {
+            viewModel.sepetYemekSil(sepetYemek.sepet_yemek_id,"fahrican_durucan")
+        }
     }
+
+
 
 
 }
