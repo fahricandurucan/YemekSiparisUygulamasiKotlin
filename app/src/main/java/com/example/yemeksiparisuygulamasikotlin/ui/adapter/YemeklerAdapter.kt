@@ -40,9 +40,6 @@ class YemeklerAdapter(var mContext:Context,var yemekListesi:List<Yemekler>,viewM
 //        t.imageViewYemek.setImageResource(mContext.resources.getIdentifier(yemek.yemek_resim_adi,"drawable",mContext.packageName))
         t.textViewFiyat.text = "${yemek.yemek_fiyat}₺"
 
-//        t.buttonDetay.setOnClickListener {
-//            t.imageView.setImageResource(mContext.resources.getIdentifier("like_red_icon","drawable",mContext.packageName))
-//        }
 
         t.cardViewYemek.setOnClickListener {
             val gecis = AnasayfaFragmentDirections.yemekDetayGecis(yemek=yemek)
@@ -50,8 +47,5 @@ class YemeklerAdapter(var mContext:Context,var yemekListesi:List<Yemekler>,viewM
         }
     }
 
-    fun xxx(){
-
-    }
 
 }
