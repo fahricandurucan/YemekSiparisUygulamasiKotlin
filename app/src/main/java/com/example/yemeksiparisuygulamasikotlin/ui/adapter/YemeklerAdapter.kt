@@ -38,15 +38,20 @@ class YemeklerAdapter(var mContext:Context,var yemekListesi:List<Yemekler>,viewM
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"
         Glide.with(mContext).load(url).override(300,300).into(t.imageViewYemek)
 //        t.imageViewYemek.setImageResource(mContext.resources.getIdentifier(yemek.yemek_resim_adi,"drawable",mContext.packageName))
-        t.textViewFiyat.text = yemek.yemek_fiyat.toString()
+        t.textViewFiyat.text = "${yemek.yemek_fiyat}₺"
 
-        t.buttonDetay.setOnClickListener {
-            Snackbar.make(it,"${yemek.yemek_adi} sepete eklendi",Snackbar.LENGTH_LONG).show()
-        }
+//        t.buttonDetay.setOnClickListener {
+//            t.imageView.setImageResource(mContext.resources.getIdentifier("like_red_icon","drawable",mContext.packageName))
+//        }
 
         t.cardViewYemek.setOnClickListener {
             val gecis = AnasayfaFragmentDirections.yemekDetayGecis(yemek=yemek)
             Navigation.findNavController(it).navigate(gecis)
         }
     }
+
+    fun xxx(){
+
+    }
+
 }

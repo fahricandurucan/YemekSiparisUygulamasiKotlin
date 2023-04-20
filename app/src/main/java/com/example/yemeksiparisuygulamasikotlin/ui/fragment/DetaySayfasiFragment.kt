@@ -24,7 +24,7 @@ class DetaySayfasiFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_detay_sayfasi, container, false)
 
-
+        binding.toolbarDetay.title = "Yemek Detay"
 
         val kullanici_adi = "fahrican_durucan"
         binding.toolbarDetay.title = "asdasd"
@@ -38,7 +38,7 @@ class DetaySayfasiFragment : Fragment() {
         Glide.with(this).load(url).override(300,300).into(binding.ivYemekResim)
         //binding.ivYemekResim.setImageResource(resources.getIdentifier(gelenYemek.yemek_resim_adi,"drawable",requireContext().packageName))
         binding.tvYemekAdi.text = gelenYemek.yemek_adi
-        binding.tvYemekFiyat.text = gelenYemek.yemek_fiyat.toString()
+        binding.tvYemekFiyat.text = "${gelenYemek.yemek_fiyat}₺"
         binding.textViewAdet.text = "1"
 
 

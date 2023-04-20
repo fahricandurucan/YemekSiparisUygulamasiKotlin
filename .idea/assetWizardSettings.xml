@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/delete/baseline_delete_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/favorite/baseline_favorite_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="494848" />
-                            <entry key="outputName" value="delete_icon" />
+                            <entry key="color" value="e80000" />
+                            <entry key="outputName" value="like_red_icon" />
                             <entry key="sourceFile" value="C:\Users\Fahrican\KotlinProjects\YemekSiparisUygulamasiKotlin" />
                           </map>
                         </option>

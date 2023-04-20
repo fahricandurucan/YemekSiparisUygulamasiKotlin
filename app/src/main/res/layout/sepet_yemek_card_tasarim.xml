@@ -16,8 +16,9 @@
             android:id="@+id/sepetYemekCard"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_margin="5dp"
-            app:cardCornerRadius="5dp">
+            android:layout_margin="7dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
