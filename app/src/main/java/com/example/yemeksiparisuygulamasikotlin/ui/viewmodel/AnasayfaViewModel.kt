@@ -1,5 +1,6 @@
 package com.example.yemeksiparisuygulamasikotlin.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.yemeksiparisuygulamasikotlin.data.entity.Yemekler
@@ -18,4 +19,10 @@ class AnasayfaViewModel : ViewModel() {
     fun yemeklerYukle(){
         repo.yemeklerYukle()
     }
+
+    fun ara(aramaKelimesi:String){
+        repo.ara(aramaKelimesi)
+    }
+
+
 }

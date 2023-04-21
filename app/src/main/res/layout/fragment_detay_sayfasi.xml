@@ -21,7 +21,23 @@
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="Yemek Detayı"
+                android:textColor="@color/yazi1"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="128dp"
+                tools:layout_editor_absoluteY="3dp"></TextView>
+
+
+
+        </androidx.appcompat.widget.Toolbar>
 
         <ImageView
             android:id="@+id/ivYemekResim"
@@ -62,12 +78,11 @@
             android:id="@+id/buttonSepetEkle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="45dp"
             android:text="Sepete ekle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAdet" />
 
         <ImageView
             android:id="@+id/imageViewNegative"
@@ -77,7 +92,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivYemekResim"
-            app:srcCompat="@drawable/negative" />
+            app:srcCompat="@drawable/minus" />
 
         <ImageView
             android:id="@+id/imageViewPlus"
@@ -104,12 +119,11 @@
             android:id="@+id/buttonSepeteGit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="60dp"
             android:text="Sepete Git"
-            app:layout_constraintBottom_toTopOf="@+id/buttonSepetEkle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewAdet" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

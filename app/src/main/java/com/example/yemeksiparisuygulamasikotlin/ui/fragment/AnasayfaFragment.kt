@@ -66,18 +66,25 @@ class AnasayfaFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {// arama butonuna basıldıgı zaman çalışır
-        ara(query)
-        return true
+        return false
     }
 
     override fun onQueryTextChange(newText: String): Boolean { //harf girdikçe ve sildikçe çalışır
-        ara(newText)
+       val filter =  viewModel.yemekListesi.value?.filter { (it.yemek_adi).toLowerCase().contains(newText.toLowerCase()) }
+        Log.e("xxxxxxxx","${filter.toString()}")
         return true
     }
 
 
     fun ara(aramaKelimesi:String){
-        Log.e("yemek ara",aramaKelimesi)
+       viewModel.ara(aramaKelimesi)
     }
+
+
+
+
+
+
+
 
 }
