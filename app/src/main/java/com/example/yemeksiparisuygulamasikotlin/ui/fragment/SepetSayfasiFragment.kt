@@ -20,7 +20,7 @@ class SepetSayfasiFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sepet_sayfasi, container, false)
 
-        binding.toolbarSepet.title = "Sepetim"
+        binding.toolbarSepet.title = ""
 
         binding.rvSepet.layoutManager = LinearLayoutManager(requireContext())
 

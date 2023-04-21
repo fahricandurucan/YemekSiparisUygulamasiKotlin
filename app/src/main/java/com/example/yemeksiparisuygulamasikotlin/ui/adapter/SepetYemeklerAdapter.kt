@@ -38,7 +38,7 @@ class SepetYemeklerAdapter(var mContext:Context,var sepetYemekListesi:List<Sepet
 
 //        t.imageViewSepet.setImageResource(mContext.resources.getIdentifier(sepetYemek.yemek_resim_adi,"drawable",mContext.packageName))
         t.tvSepetYemekAd.text = sepetYemek.yemek_adi
-        t.tvSepetYemekFiyat.text = sepetYemek.yemek_fiyat.toString()
+        t.tvSepetYemekFiyat.text = "${sepetYemek.yemek_fiyat}₺"
         t.tvSepetAdet.text = sepetYemek.yemek_siparis_adet.toString()
 
         t.imageViewDelete.setOnClickListener {
