@@ -1,6 +1,7 @@
 package com.example.yemeksiparisuygulamasikotlin.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -30,6 +31,8 @@ class SepetYemeklerAdapter(var mContext:Context,var sepetYemekListesi:List<Sepet
     }
 
     override fun onBindViewHolder(holder: SepetYemekCardTasarimTutucu, position: Int) {
+        Log.e("adapter","adapter")
+
         val sepetYemek = sepetYemekListesi.get(position)
         val t = holder.binding
 
@@ -42,8 +45,12 @@ class SepetYemeklerAdapter(var mContext:Context,var sepetYemekListesi:List<Sepet
         t.tvSepetAdet.text = sepetYemek.yemek_siparis_adet.toString()
 
         t.imageViewDelete.setOnClickListener {
+            Log.e("adapter sil buton","adapter sil buton")
+
             viewModel.sepetYemekSil(sepetYemek.sepet_yemek_id,"fahrican_durucan")
         }
+
+        viewModel.toplam()
     }
 
 

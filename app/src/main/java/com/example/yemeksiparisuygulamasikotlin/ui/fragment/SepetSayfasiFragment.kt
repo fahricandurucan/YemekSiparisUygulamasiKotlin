@@ -1,6 +1,7 @@
 package com.example.yemeksiparisuygulamasikotlin.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,11 +23,23 @@ class SepetSayfasiFragment : Fragment() {
 
         binding.toolbarSepet.title = ""
 
+
         binding.rvSepet.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.sepetYemekListesi.observe(viewLifecycleOwner){
+            Log.e("observe","observe")
             val adapter = SepetYemeklerAdapter(requireContext(),it,viewModel)
             binding.rvSepet.adapter = adapter
+            binding.tvToplamFiyat.text  = "${viewModel.toplam()}₺"
+
+        }
+
+
+
+        binding.butonSepetOnayla.setOnClickListener {
+            Log.e("sepet onayla butonı","sepet onayla butonı")
+
+            viewModel.toplam()
         }
 
 
@@ -35,19 +48,22 @@ class SepetSayfasiFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.e("on create","on create")
+
         super.onCreate(savedInstanceState)
         val tempViewModel:SepetSayfasiViewModel by viewModels()
         viewModel = tempViewModel
     }
 
-    fun sepetYemekSil(sepet_yemek_id:Int,kullanici_adi:String){
-        viewModel.sepetYemekSil(sepet_yemek_id,kullanici_adi)
-    }
+//    fun sepetYemekSil(sepet_yemek_id:Int,kullanici_adi:String){
+//        viewModel.sepetYemekSil(sepet_yemek_id,kullanici_adi)
+//    }
 
     override fun onResume() {
+        Log.e("on resume","on resume")
         super.onResume()
         viewModel.sepetYemekYukle("fahrican_durucan")
-
+//        binding.tvToplamFiyat.text = "${viewModel.toplam()}₺"
     }
 
 }
