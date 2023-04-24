@@ -27,7 +27,6 @@ class SepetSayfasiFragment : Fragment() {
         binding.rvSepet.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.sepetYemekListesi.observe(viewLifecycleOwner){
-            Log.e("observe","observe")
             val adapter = SepetYemeklerAdapter(requireContext(),it,viewModel)
             binding.rvSepet.adapter = adapter
             binding.tvToplamFiyat.text  = "${viewModel.toplam()}₺"
@@ -37,8 +36,6 @@ class SepetSayfasiFragment : Fragment() {
 
 
         binding.butonSepetOnayla.setOnClickListener {
-            Log.e("sepet onayla butonı","sepet onayla butonı")
-
             viewModel.toplam()
         }
 
@@ -48,8 +45,6 @@ class SepetSayfasiFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("on create","on create")
-
         super.onCreate(savedInstanceState)
         val tempViewModel:SepetSayfasiViewModel by viewModels()
         viewModel = tempViewModel
@@ -60,7 +55,6 @@ class SepetSayfasiFragment : Fragment() {
 //    }
 
     override fun onResume() {
-        Log.e("on resume","on resume")
         super.onResume()
         viewModel.sepetYemekYukle("fahrican_durucan")
 //        binding.tvToplamFiyat.text = "${viewModel.toplam()}₺"

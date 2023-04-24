@@ -27,11 +27,66 @@ class YemeklerDaoRepository {
     }
 
     fun sepeteEkle(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,yemek_siparis_adet:Int,kullanici_adi:String){
-        ydao.sepeteYemekEkle(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
-            .enqueue(object : Callback<CRUDCevap>{
-                override fun onResponse(call: Call<CRUDCevap>, response: Response<CRUDCevap>) {}
-                override fun onFailure(call: Call<CRUDCevap>, t: Throwable) {}
-            })
+        Log.e("sepet listesi","${yemekListesi.value.toString()}")
+        var control = false
+//        sepetYemekYukle(kullanici_adi)
+
+        if(sepetYemekListesi.value?.isEmpty() == false){
+            Log.e("if in içi","if in içi")
+            for(i in sepetYemekListesi.value.orEmpty()){
+                if(i.yemek_adi.contains(yemek_adi)){
+                    control = true
+                    Log.e("if2 nin içi","if2 nin içi")
+                    var adet = i.yemek_siparis_adet + yemek_siparis_adet
+                    sepetYemekSil(i.sepet_yemek_id,i.kullanici_adi)
+                    ydao.sepeteYemekEkle(yemek_adi,yemek_resim_adi,yemek_fiyat,adet,kullanici_adi)
+                        .enqueue(object : Callback<CRUDCevap>{
+                            override fun onResponse(call: Call<CRUDCevap>, response: Response<CRUDCevap>) {
+                                sepetYemekYukle(kullanici_adi)
+                            }
+                            override fun onFailure(call: Call<CRUDCevap>, t: Throwable) {}
+                        })
+                    break
+                }
+            }
+
+            if(control == false){
+                Log.e("Control if","control if")
+                ydao.sepeteYemekEkle(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+                    .enqueue(object : Callback<CRUDCevap>{
+                        override fun onResponse(call: Call<CRUDCevap>, response: Response<CRUDCevap>) {
+                            sepetYemekYukle(kullanici_adi)
+
+                        }
+                        override fun onFailure(call: Call<CRUDCevap>, t: Throwable) {}
+                    })
+            }
+
+        }
+        else{
+            Log.e("else","else")
+
+            ydao.sepeteYemekEkle(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+                .enqueue(object : Callback<CRUDCevap>{
+                    override fun onResponse(call: Call<CRUDCevap>, response: Response<CRUDCevap>) {
+                        sepetYemekYukle(kullanici_adi)
+
+                    }
+                    override fun onFailure(call: Call<CRUDCevap>, t: Throwable) {}
+                })
+        }
+
+
+//        ydao.sepeteYemekEkle(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+//            .enqueue(object : Callback<CRUDCevap>{
+//                override fun onResponse(call: Call<CRUDCevap>, response: Response<CRUDCevap>) {
+//                    Log.e("sepet ekle","${sepetYemekListesi.value.toString()}")
+//                    sepetYemekYukle(kullanici_adi)
+//
+//                }
+//                override fun onFailure(call: Call<CRUDCevap>, t: Throwable) {}
+//            })
+
     }
     fun yemeklerYukle(){
         ydao.tumYemekler().enqueue(object : Callback<YemeklerCevap>{
@@ -49,11 +104,12 @@ class YemeklerDaoRepository {
     }
 
     fun sepetYemekYukle(kullanici_adi: String){
-        Log.e("xxx","yyy")
         ydao.sepetYemekGetir(kullanici_adi).enqueue(object : Callback<SepetYemeklerCevap>{
             override fun onResponse(call: Call<SepetYemeklerCevap>, response: Response<SepetYemeklerCevap>) {
                 val liste = response.body()!!.sepet_yemekler
                 sepetYemekListesi.value = liste
+//                Log.e("xxx","${sepetYemekListesi.value.toString()}")
+
             }
 
             override fun onFailure(call: Call<SepetYemeklerCevap>, t: Throwable) {
@@ -89,6 +145,7 @@ class YemeklerDaoRepository {
         var filter = liste!!.filter { (it.yemek_adi).toLowerCase().contains(aramaKelimesi.toLowerCase()) }
         yemekListesi.value = filter
     }
+
 
 
 

@@ -12,18 +12,11 @@ class SepetSayfasiViewModel : ViewModel() {
     var sepetYemekListesi : MutableLiveData<List<SepetYemekler>>
 
     init {
-        Log.e("view model init","view model init")
-
         sepetYemekYukle(kullanici_adi = "fahrican_durucan")
         sepetYemekListesi = repo.sepetYemekGetir()
-        Log.e("init çıkış","${sepetYemekListesi.value.toString()}")
-
-
     }
 
     fun sepetYemekYukle(kullanici_adi:String){
-        Log.e("view model yükle","view model yükle")
-
         repo.sepetYemekYukle(kullanici_adi)
         toplam()
     }
@@ -46,10 +39,6 @@ class SepetSayfasiViewModel : ViewModel() {
         catch (ex:NullPointerException){
             ex.printStackTrace()
         }
-
-
-
-        Log.e("toplam","$toplamFiyat")
 
         return toplamFiyat
     }
