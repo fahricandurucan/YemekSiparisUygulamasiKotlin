@@ -9,7 +9,6 @@ import com.example.yemeksiparisuygulamasikotlin.data.repo.YemeklerDaoRepository
 
 class AnasayfaViewModel : ViewModel() {
     val repo = YemeklerDaoRepository()
-    var rrr = SepetYemeklerDaoRepository()
 
     var yemekListesi : MutableLiveData<List<Yemekler>>
 

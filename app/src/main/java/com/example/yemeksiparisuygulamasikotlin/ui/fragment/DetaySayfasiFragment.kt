@@ -41,8 +41,9 @@ class DetaySayfasiFragment : Fragment() {
 
 
         binding.buttonSepetEkle.setOnClickListener {
-            Snackbar.make(it,"${gelenYemek.yemek_adi} sepete eklendi!",Snackbar.ANIMATION_MODE_SLIDE).show()
             val siparisAdet = binding.textViewAdet.text.toString().toInt()
+            Snackbar.make(it,"$siparisAdet adet ${gelenYemek.yemek_adi} sepete eklendi!",Snackbar.ANIMATION_MODE_SLIDE).show()
+
             sepeteEkle(gelenYemek.yemek_adi,gelenYemek.yemek_resim_adi,gelenYemek.yemek_fiyat,siparisAdet, kullanici_adi)
         }
 

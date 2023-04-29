@@ -50,14 +50,8 @@ class AnasayfaFragment : Fragment(), SearchView.OnQueryTextListener {
         //dinleme işlemi
         viewModel.yemekListesi.observe(viewLifecycleOwner){
             Log.e("observe","observe")
-
-//            Log.e("ANASAYFA OBSERVE","ANASAYFA OBSERVE")
             var adapter = YemeklerAdapter(requireContext(),it,viewModel)
             binding.rv.adapter = adapter
-//            viewModel.rrr.sepetYemekYukle("fahrican_durucan")
-//            Log.e("111111111","${viewModel.rrr.sepetYemekListesi.value}")
-//            Log.e("ANASAYFA OBSERVE ÇIKIŞ","ANASAYFA OBSERVE ÇIKIŞ")
-
         }
 
 
@@ -93,9 +87,7 @@ class AnasayfaFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
 
-//    fun ara(aramaKelimesi:String){
-//       viewModel.ara(aramaKelimesi)
-//    }
+
 
 //    override fun onResume() {
 //        Log.e("onResume","onResume")
