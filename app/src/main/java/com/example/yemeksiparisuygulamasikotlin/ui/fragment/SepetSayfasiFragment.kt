@@ -14,6 +14,7 @@ import com.example.yemeksiparisuygulamasikotlin.data.entity.SepetYemekler
 import com.example.yemeksiparisuygulamasikotlin.databinding.FragmentSepetSayfasiBinding
 import com.example.yemeksiparisuygulamasikotlin.ui.adapter.SepetYemeklerAdapter
 import com.example.yemeksiparisuygulamasikotlin.ui.viewmodel.SepetSayfasiViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class SepetSayfasiFragment : Fragment() {
     private lateinit var binding: FragmentSepetSayfasiBinding
@@ -36,6 +37,8 @@ class SepetSayfasiFragment : Fragment() {
 
 
         binding.butonSepetOnayla.setOnClickListener {
+
+            Snackbar.make(it,"Sepetiniz onaylandı! İyi günler.",Snackbar.LENGTH_LONG).show()
             viewModel.toplam()
         }
 
