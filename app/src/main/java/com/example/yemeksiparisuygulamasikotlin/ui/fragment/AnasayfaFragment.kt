@@ -24,13 +24,14 @@ class AnasayfaFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var viewModel : AnasayfaViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_anasayfa, container, false)
-
+        var filter = ArrayList<Yemekler>()
         binding.toolbarAnasayfa.title = ""
 
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarAnasayfa)
 
         requireActivity().addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                Log.e("onCreateMenu","onCreateMenu")
                 menuInflater.inflate(R.menu.toolbar_menu,menu)
 
                 val item = menu.findItem(R.id.action_ara)
@@ -48,9 +49,17 @@ class AnasayfaFragment : Fragment(), SearchView.OnQueryTextListener {
 
         //dinleme işlemi
         viewModel.yemekListesi.observe(viewLifecycleOwner){
-            val adapter = YemeklerAdapter(requireContext(),it,viewModel)
+            Log.e("observe","observe")
+
+//            Log.e("ANASAYFA OBSERVE","ANASAYFA OBSERVE")
+            var adapter = YemeklerAdapter(requireContext(),it,viewModel)
             binding.rv.adapter = adapter
+//            viewModel.rrr.sepetYemekYukle("fahrican_durucan")
+//            Log.e("111111111","${viewModel.rrr.sepetYemekListesi.value}")
+//            Log.e("ANASAYFA OBSERVE ÇIKIŞ","ANASAYFA OBSERVE ÇIKIŞ")
+
         }
+
 
 
 
@@ -60,25 +69,39 @@ class AnasayfaFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.e("onCreate","onCreate")
+
         super.onCreate(savedInstanceState)
         val tempViewModel : AnasayfaViewModel by viewModels()
         viewModel = tempViewModel
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {// arama butonuna basıldıgı zaman çalışır
-        return false
+//        Log.e("textSubmit","textSubmit")
+//        var filter  = viewModel.yemekListesi.value?.filter { (it.yemek_adi).toLowerCase().contains(query.toLowerCase()) }
+//        viewModel.yemekListesi.value = filter
+//        Log.e("filter list","${viewModel.yemekListesi.value }")
+        return true
     }
 
     override fun onQueryTextChange(newText: String): Boolean { //harf girdikçe ve sildikçe çalışır
-       val filter =  viewModel.yemekListesi.value?.filter { (it.yemek_adi).toLowerCase().contains(newText.toLowerCase()) }
-        Log.e("xxxxxxxx","${filter.toString()}")
+//        Log.e("textChange","textChange")
+//        var filter = viewModel.yemekListesi.value?.filter { (it.yemek_adi).toLowerCase().contains(newText.toLowerCase()) }
+//        viewModel.yemekListesi.value = filter
+//        Log.e("filter list","${viewModel.yemekListesi.value }")
         return true
     }
 
 
-    fun ara(aramaKelimesi:String){
-       viewModel.ara(aramaKelimesi)
-    }
+//    fun ara(aramaKelimesi:String){
+//       viewModel.ara(aramaKelimesi)
+//    }
+
+//    override fun onResume() {
+//        Log.e("onResume","onResume")
+//        super.onResume()
+//        viewModel.yemeklerYukle()
+//    }
 
 
 

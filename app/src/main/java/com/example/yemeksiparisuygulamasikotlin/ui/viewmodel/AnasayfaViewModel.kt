@@ -4,10 +4,12 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.yemeksiparisuygulamasikotlin.data.entity.Yemekler
+import com.example.yemeksiparisuygulamasikotlin.data.repo.SepetYemeklerDaoRepository
 import com.example.yemeksiparisuygulamasikotlin.data.repo.YemeklerDaoRepository
 
 class AnasayfaViewModel : ViewModel() {
     val repo = YemeklerDaoRepository()
+    var rrr = SepetYemeklerDaoRepository()
 
     var yemekListesi : MutableLiveData<List<Yemekler>>
 
@@ -18,10 +20,6 @@ class AnasayfaViewModel : ViewModel() {
 
     fun yemeklerYukle(){
         repo.yemeklerYukle()
-    }
-
-    fun ara(aramaKelimesi:String){
-        repo.ara(aramaKelimesi)
     }
 
 

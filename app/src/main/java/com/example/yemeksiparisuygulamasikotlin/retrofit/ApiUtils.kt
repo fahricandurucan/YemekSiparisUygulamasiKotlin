@@ -7,5 +7,8 @@ class ApiUtils {
         fun getYemeklerDao() : YemeklerDao{
             return RetrofitClient.getClient(BASE_URL).create(YemeklerDao::class.java)
         }
+        fun getSepetYemeklerDao() : SepetYemeklerDao{
+            return RetrofitClient.getClient(BASE_URL).create(SepetYemeklerDao::class.java)
+        }
     }
 }
